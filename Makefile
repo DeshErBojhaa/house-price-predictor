@@ -8,12 +8,16 @@
 setup:
 	# Create python virtualenv & source it
 	# source ~/.devops/bin/activate
-	python3 -m venv ~/.venv
+	python3 -m venv ./.venv
+	source ./.venv/bin/activate
 
 install:
 	# This should be run from inside a virtualenv
 	pip3 install --upgrade pip &&\
 		pip3 install -r requirements.txt
+	wget -O "${PWD}/.venv/bin/hadolint" https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Darwin-x86_64 &&\
+    sudo chmod 755 "${PWD}/.venv/bin/hadolint"
+	
 
 test:
 	# Additional, optional, tests could go here
@@ -23,8 +27,7 @@ test:
 lint:
 	# See local hadolint install instructions:   https://github.com/hadolint/hadolint
 	# This is linter for Dockerfiles
-	hadolint Dockerfile 
-	#--ignore=DL3013
+	"${PWD}/.venv/bin/hadolint" Dockerfile --ignore=DL3013
 	# This is a linter for Python source code linter: https://www.pylint.org/
 	# This should be run from inside a virtualenv
 	pylint --disable=R,C,W1203 app.py
