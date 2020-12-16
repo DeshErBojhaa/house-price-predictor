@@ -33,6 +33,7 @@ jobs:
             - run:
                 name: run lint
                 command: |
+                    ls -la
                     . venv/bin/activate
                     make lint
         # TODO: Do I need a workflow?
