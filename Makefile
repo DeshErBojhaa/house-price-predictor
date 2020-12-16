@@ -17,7 +17,6 @@ install:
 		pip3 install -r requirements.txt
 	wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
     chmod +x /bin/hadolint
-	chmod 755 /bin/hadolint
 	# sudo wget -O /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Darwin-x86_64 &&\
     # sudo chmod +x /usr/local/bin/hadolint
 	
