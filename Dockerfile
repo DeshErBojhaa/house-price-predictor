@@ -7,9 +7,10 @@ WORKDIR /app
 COPY . ./
 
 ## Step 3:
+# hadolint ignore=DL3013,DL3042
 RUN pip3 install --upgrade pip &&\
     pip3 install -r requirements.txt
-# hadolint ignore=DL3013
+
 
 ## Step 4:
 EXPOSE 80
