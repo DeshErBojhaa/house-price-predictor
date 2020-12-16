@@ -15,6 +15,9 @@ install:
 	# This should be run from inside a virtualenv
 	pip3 install --upgrade pip &&\
 		pip3 install -r requirements.txt
+	wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+    chmod +x /bin/hadolint
+	chmod 755 /bin/hadolint
 	# sudo wget -O /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Darwin-x86_64 &&\
     # sudo chmod +x /usr/local/bin/hadolint
 	
@@ -27,7 +30,8 @@ test:
 lint:
 	# See local hadolint install instructions:   https://github.com/hadolint/hadolint
 	# This is linter for Dockerfiles
-	docker run --rm -i hadolint/hadolint < Dockerfile
+	#docker run --rm -i hadolint/hadolint < Dockerfile
+	hadolint Dockerfile
 	# sudo /usr/local/bin/hadolint Dockerfile --ignore=DL3013
 	# This is a linter for Python source code linter: https://www.pylint.org/
 	# This should be run from inside a virtualenv
